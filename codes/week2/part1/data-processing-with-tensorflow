@@ -4,7 +4,8 @@
   "metadata": {
     "colab": {
       "name": "Week2(part1)",
-      "provenance": []
+      "provenance": [],
+      "collapsed_sections": []
     },
     "kernelspec": {
       "name": "python3",
@@ -33,9 +34,19 @@
         "#**Creating Tensorflow Dataset form Existing Tensors**\n",
         "\n",
         "If the data already exists in the form of a tensor object, a Python list, or a NumPy\n",
-        "array, we can easily create a dataset using the tf.data.Dataset.from_tensor_\n",
-        "slices() function. This function returns an object of class Dataset, which we\n",
+        "array, we can easily create a dataset using the **tf.data.Dataset.from_tensor_\n",
+        "slices()**function. This function returns an object of class Dataset, which we\n",
         "can use to iterate through the individual elements in the input dataset."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "V3brgFMpvedS"
+      },
+      "source": [
+        "Data တွေ က tensor type ဒါမှအဟုတ် list,NumPy array အနေနဲ့တည်ရှိနေပြီးသား ဆို tf.data.Dataset.from_slices() function ကိုသုံး ပြီး dataset တစ်ခု ကို ဖန်တီးနိုင်တယ်။ \n",
+        "Dataset ရယ့် object အနေနဲ့ return ပြန်ပေးတယ်။ဒီfunction မှာ optional argument အနေနဲ့ drop_reminder ဆိုတာပါတယ်။ ဒီကောင်က Tensor ထဲမာပါဝင်တယ့်element စုစုပေါင်းကို desired batch size နဲ့စားလို့ မပြတ်တယ့်အခါမျိုးမှာ အသုံးဝင်တယ်။"
       ]
     },
     {
@@ -51,7 +62,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "3lOkWbc8ji3A",
-        "outputId": "b6e4c7d3-1114-4789-ed8c-63ac2fa98c30",
+        "outputId": "33c8b691-1b91-40ff-8891-9ead2fc7e229",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 34
@@ -63,7 +74,7 @@
         "ds = tf.data.Dataset.from_tensor_slices(a)\n",
         "print(ds)"
       ],
-      "execution_count": 3,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -87,7 +98,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "Z-1sZoeAmv0J",
-        "outputId": "db5b6054-3520-4a8f-b9e7-3dd298ed7585",
+        "outputId": "04097831-6cce-4aef-f479-7a72e11b62b4",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 119
@@ -97,7 +108,7 @@
         "for item in ds :\n",
         "  print(item)"
       ],
-      "execution_count": 4,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -126,7 +137,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "IEG4HUu_n-qj",
-        "outputId": "208bff5d-9b5b-4345-f5aa-7091a3c08773",
+        "outputId": "6f55e296-f221-4646-f62b-74a519c13f42",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 51
@@ -137,7 +148,7 @@
         "for i, elem in enumerate(ds_batch, 1):\n",
         "  print('batch {}:'.format(i), elem.numpy())"
       ],
-      "execution_count": 5,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -168,10 +179,20 @@
       ]
     },
     {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "kP-1r0VAvobH"
+      },
+      "source": [
+        "Tensors Data တွေက 2မျိုး ဒါမှမဟုတ် 2မျိုး ထက်ပိုရှိနိုင်တယ်။ ဥပမာ အားဖြင့် Data ရယ့် Input feature နဲ့ Labels.\n",
+        "\n"
+      ]
+    },
+    {
       "cell_type": "code",
       "metadata": {
         "id": "rzjElOO9pzGr",
-        "outputId": "30b42151-6d87-46a9-fa7a-f81fba2bcd66",
+        "outputId": "d60bf3ec-976b-42d4-8040-24dfe7f7def6",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 119
@@ -184,7 +205,7 @@
         "print(t_x)\n",
         "print(t_y)"
       ],
-      "execution_count": 43,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -213,7 +234,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "ZEBIftgrrZM5",
-        "outputId": "6123e694-2370-47a7-cb41-d23dbb459876",
+        "outputId": "0ec30fc8-b0a9-4f9f-98b0-addab8e311a4",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 85
@@ -227,7 +248,7 @@
         "  print(' x:', example[0].numpy(),\n",
         "         ' y:', example[1].numpy())"
       ],
-      "execution_count": 15,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -254,7 +275,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "bBXZzWS-sK8e",
-        "outputId": "dee88819-e689-4e71-a351-3ecfc83f3144",
+        "outputId": "b885fc7e-89ba-4dfd-c187-2414db994ed2",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 85
@@ -266,7 +287,7 @@
         "  print(' x:', example[0].numpy(),\n",
         "          ' y:', example[1].numpy()) "
       ],
-      "execution_count": 16,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -293,7 +314,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "6tyCZ5YdtSPj",
-        "outputId": "b05abf18-8d68-47f7-967e-1fe13f10739a",
+        "outputId": "c2262e84-89c3-4dde-84bb-b50c7c734f05",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 85
@@ -305,7 +326,7 @@
         "  print(' x:', example[0].numpy(),\n",
         "         ' y:', example[1].numpy()) "
       ],
-      "execution_count": 17,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -331,6 +352,17 @@
     {
       "cell_type": "markdown",
       "metadata": {
+        "id": "XNtfwBJAziJa"
+      },
+      "source": [
+        "shuffle လုပ်ခြင်း batch ခွဲ ခြင်း repeat လုပ်ခြင်းဖြင့် model train နေစဉ်မှာoverfit ဖြစ် ခြင်းမှကာကွယ်ပေးနိုင်ပါတယ်။ \n",
+        "shuffle ()method မာ ပါဝင်တယ့် buffer_sizeဆိုတာကတော့သူက အဓိက အားဖြင့် datasets ထဲမာ ရှိတယ့် elements အရေအတွက်ကိုsuffle မလုပ်မှီ grouped လိုက်သတ်မှတ်ပေးတာပါ။ \n",
+        "Model ကို epoch အများကြီးနဲ့ trainတယ့်အခါမှာ dataset ကိုshuffleလုပ်ခြင်း itertate လုပ်ခြင်း များလိုအပ်ပါတယ်။"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
         "id": "7HK0p_L1vCSs"
       },
       "source": [
@@ -347,7 +379,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "28ETEbq2t06J",
-        "outputId": "01eaf179-5bdb-4993-a2df-5b50c3fc2ded",
+        "outputId": "9788ceab-3135-443e-d7da-21e5241baf9f",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 85
@@ -360,7 +392,7 @@
         "   print(' x:', example[0].numpy(),\n",
         "           ' y:', example[1].numpy())"
       ],
-      "execution_count": 18,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -387,7 +419,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "ATa--GqjvWa2",
-        "outputId": "e6d673ae-a285-4a00-cffe-d1e7d7d1064f",
+        "outputId": "954ba91e-86b7-41ad-e152-7763f1fa0397",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 85
@@ -399,7 +431,7 @@
         "print('Batch-x:\\n', batch_x.numpy())\n",
         "\n"
       ],
-      "execution_count": 19,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -426,7 +458,7 @@
       "source": [
         "print('Batch-y: ', batch_y.numpy())"
       ],
-      "execution_count": 20,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -453,26 +485,32 @@
       "cell_type": "code",
       "metadata": {
         "id": "BXUM206VwR8B",
-        "outputId": "de989b5a-a56b-4cda-a87a-ad0eefb87b63",
+        "outputId": "af79ad76-2ecd-492b-f5b1-3603b2c43e55",
         "colab": {
           "base_uri": "https://localhost:8080/",
-          "height": 85
+          "height": 187
         }
       },
       "source": [
         "ds = ds_joint.batch(3).repeat(count=2)\n",
         "for i,(batch_x, batch_y) in enumerate(ds):\n",
-        "    print(i, batch_x.shape, batch_y.numpy())"
+        "    print(i, batch_x, batch_y.numpy())"
       ],
-      "execution_count": 21,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
           "text": [
-            "0 (3, 3) [0 1 2]\n",
-            "1 (1, 3) [3]\n",
-            "2 (3, 3) [0 1 2]\n",
-            "3 (1, 3) [3]\n"
+            "0 tf.Tensor(\n",
+            "[[0.16513085 0.9014813  0.6309742 ]\n",
+            " [0.4345461  0.29193902 0.64250207]\n",
+            " [0.9757855  0.43509948 0.6601019 ]], shape=(3, 3), dtype=float32) [0 1 2]\n",
+            "1 tf.Tensor([[0.60489583 0.6366315  0.6144488 ]], shape=(1, 3), dtype=float32) [3]\n",
+            "2 tf.Tensor(\n",
+            "[[0.16513085 0.9014813  0.6309742 ]\n",
+            " [0.4345461  0.29193902 0.64250207]\n",
+            " [0.9757855  0.43509948 0.6601019 ]], shape=(3, 3), dtype=float32) [0 1 2]\n",
+            "3 tf.Tensor([[0.60489583 0.6366315  0.6144488 ]], shape=(1, 3), dtype=float32) [3]\n"
           ],
           "name": "stdout"
         }
@@ -492,7 +530,7 @@
       "cell_type": "code",
       "metadata": {
         "id": "uGcDfEayy0b7",
-        "outputId": "3bbd5426-e4b1-419a-d00f-03fc48d5ef2a",
+        "outputId": "c6745a44-3a03-4655-a1b0-446d35009df5",
         "colab": {
           "base_uri": "https://localhost:8080/",
           "height": 68
@@ -503,7 +541,7 @@
         "for i,(batch_x, batch_y) in enumerate(ds):\n",
         "  print(i, batch_x.shape, batch_y.numpy())"
       ],
-      "execution_count": 22,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -541,7 +579,7 @@
         "for i,(batch_x, batch_y) in enumerate(ds):\n",
         "  print(i, batch_x.shape, batch_y.numpy())"
       ],
-      "execution_count": 23,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -582,7 +620,7 @@
         "for i,(batch_x, batch_y) in enumerate(ds):\n",
         "  print(i, batch_x.shape, batch_y.numpy())"
       ],
-      "execution_count": 24,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -633,7 +671,7 @@
         "file_list = sorted([str(path) for path in imgdir_path.glob('*.jpg')])\n",
         "print(file_list)"
       ],
-      "execution_count": 30,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -678,7 +716,7 @@
         "plt.tight_layout()\n",
         "plt.show()"
       ],
-      "execution_count": 33,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -731,7 +769,7 @@
         "labels = [1 if 'Dog' in os.path.basename(file) else 0 for file in file_list]\n",
         "print(labels)"
       ],
-      "execution_count": 35,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -768,7 +806,7 @@
         "for item in ds_files_labels:\n",
         "  print(item[0].numpy(), item[1].numpy())"
       ],
-      "execution_count": 36,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -812,7 +850,7 @@
         " image /= 255.0\n",
         " return image, label\n"
       ],
-      "execution_count": 38,
+      "execution_count": null,
       "outputs": []
     },
     {
@@ -824,7 +862,7 @@
         "img_width, img_height = 120, 80\n",
         "ds_images_labels = ds_files_labels.map(load_and_preprocess)"
       ],
-      "execution_count": 39,
+      "execution_count": null,
       "outputs": []
     },
     {
@@ -848,7 +886,7 @@
         "plt.tight_layout()\n",
         "plt.show()"
       ],
-      "execution_count": 40,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "display_data",
@@ -886,7 +924,7 @@
       "source": [
         "pip install tensorflow-datasets"
       ],
-      "execution_count": 41,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
@@ -941,7 +979,7 @@
         "\n",
         "print(tfds.list_builders()[:5])"
       ],
-      "execution_count": 42,
+      "execution_count": null,
       "outputs": [
         {
           "output_type": "stream",
